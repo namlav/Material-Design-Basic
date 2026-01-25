@@ -85,13 +85,70 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       // ===== AppBar =====
       appBar: AppBar(
-        title: const Text('Material Widgets Demo'),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        toolbarHeight: 76,
+        titleSpacing: 20,
+        title: Row(
+          children: [
+            Container(
+              width: 36,
+              height: 36,
+              decoration: BoxDecoration(
+                color: Colors.deepPurple.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(Icons.widgets_outlined, color: Colors.deepPurple),
+            ),
+            const SizedBox(width: 12),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'Material Widgets',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
+                Text(
+                  'Material Demo',
+                  style: TextStyle(fontSize: 13, color: Colors.black54),
+                ),
+              ],
+            ),
+          ],
+        ),
+
         actions: [
           IconButton(
+            tooltip: 'Search',
+            icon: const Icon(Icons.search),
+            onPressed: () {},
+          ),
+          IconButton(
+            tooltip: 'Notifications',
+            icon: const Icon(Icons.notifications_none),
+            onPressed: () {},
+          ),
+          IconButton(
+            tooltip: 'Favorite',
+            icon: const Icon(Icons.star_border),
+            onPressed: () {},
+          ),
+          IconButton(
+            tooltip: 'Info',
             icon: const Icon(Icons.info_outline),
             onPressed: showMyDialog,
           ),
+          const SizedBox(width: 8),
         ],
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1),
+          child: Container(height: 1, color: Colors.grey.shade200),
+        ),
       ),
 
       // ===== Body =====
