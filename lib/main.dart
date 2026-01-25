@@ -54,9 +54,27 @@ class _HomePageState extends State<HomePage> {
   Future<void> pickDate() async {
     DateTime? date = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: selectedDate ?? DateTime.now(),
       firstDate: DateTime(2020),
       lastDate: DateTime(2030),
+      helpText: 'CHỌN NGÀY',
+      cancelText: 'HỦY',
+      confirmText: 'XÁC NHẬN',
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: const ColorScheme.light(
+              primary: Colors.indigo,
+              onPrimary: Colors.white,
+              onSurface: Colors.black,
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(foregroundColor: Colors.indigo),
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
 
     if (date != null) {
@@ -70,7 +88,23 @@ class _HomePageState extends State<HomePage> {
   Future<void> pickTime() async {
     TimeOfDay? time = await showTimePicker(
       context: context,
-      initialTime: TimeOfDay.now(),
+      initialTime: selectedTime ?? TimeOfDay.now(),
+      helpText: 'CHỌN GIỜ',
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: const ColorScheme.light(
+              primary: Colors.teal,
+              onPrimary: Colors.white,
+              onSurface: Colors.black,
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(foregroundColor: Colors.teal),
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
 
     if (time != null) {
@@ -104,26 +138,150 @@ class _HomePageState extends State<HomePage> {
               onPressed: showMyDialog,
               child: const Text('Open Dialog'),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 20),
 
-            ElevatedButton(onPressed: pickDate, child: const Text('Pick Date')),
-            const SizedBox(height: 8),
-
-            Text(
-              selectedDate == null
-                  ? 'Chưa chọn ngày'
-                  : 'Ngày đã chọn: ${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}',
+            //Date Picker UI
+            InkWell(
+              onTap: pickDate,
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.indigo.shade400, Colors.blue.shade900],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.blue.withOpacity(0.3),
+                      blurRadius: 12,
+                      offset: const Offset(0, 6),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.2),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.calendar_month,
+                        color: Colors.white,
+                        size: 28,
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Ngày đã chọn',
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          selectedDate == null
+                              ? 'Chưa chọn ngày'
+                              : '${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}',
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white54,
+                      size: 18,
+                    ),
+                  ],
+                ),
+              ),
             ),
 
-            const SizedBox(height: 12),
+            const SizedBox(height: 20),
 
-            ElevatedButton(onPressed: pickTime, child: const Text('Pick Time')),
-            const SizedBox(height: 8),
-
-            Text(
-              selectedTime == null
-                  ? 'Chưa chọn giờ'
-                  : 'Giờ đã chọn: ${selectedTime!.format(context)}',
+            //Time Picker UI
+            InkWell(
+              onTap: pickTime,
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.teal.shade400, Colors.green.shade800],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.teal.withOpacity(0.3),
+                      blurRadius: 12,
+                      offset: const Offset(0, 6),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.2),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.access_time_filled,
+                        color: Colors.white,
+                        size: 28,
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Giờ đã chọn',
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          selectedTime == null
+                              ? 'Chưa chọn giờ'
+                              : selectedTime!.format(context),
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white54,
+                      size: 18,
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
