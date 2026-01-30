@@ -28,6 +28,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   DateTime? selectedDate;
   TimeOfDay? selectedTime;
+  String selectedGender = "Chưa chọn giới tính";
 
   // ===== Dialog =====
   void showMyDialog() {
@@ -47,6 +48,67 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+    );
+  }
+
+  // ===== SimpleDialog =====
+  void showMySimpleDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => SimpleDialog(
+        title: const Text('Vui lòng chọn giới tính'),
+        children: [
+          SimpleDialogOption(
+            onPressed: () {
+              setState(() => selectedGender = "Nam");
+              Navigator.pop(context);
+            },
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 8),
+              child: Text('Nam', style: TextStyle(fontSize: 16)),
+            ),
+          ),
+          SimpleDialogOption(
+            onPressed: () {
+              setState(() => selectedGender = "Nữ");
+              Navigator.pop(context);
+            },
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 8),
+              child: Text('Nữ', style: TextStyle(fontSize: 16)),
+            ),
+          ),
+          SimpleDialogOption(
+            onPressed: () {
+              setState(() => selectedGender = "Khác");
+              Navigator.pop(context);
+            },
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 8),
+              child: Text('Khác', style: TextStyle(fontSize: 16)),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ===== AboutDialog =====
+  void showMyAboutDialog() {
+    showAboutDialog(
+      context: context,
+      applicationName: 'Thông tin Sinh viên',
+      applicationVersion: 'MSSV: 12345678',
+      applicationIcon: const CircleAvatar(
+        backgroundColor: Colors.blue,
+        child: Icon(Icons.school, color: Colors.white),
+      ),
+      applicationLegalese:
+          'Họ và tên: Nguyễn Văn A\nLớp: CNTT K14\nKhoa: Công nghệ thông tin',
+      children: [
+        const SizedBox(height: 10),
+        const Text('Demo các loại Dialogs.'),
+      ],
     );
   }
 
@@ -155,7 +217,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-
         actions: [
           IconButton(
             tooltip: 'Search',
@@ -175,7 +236,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             tooltip: 'Info',
             icon: const Icon(Icons.info_outline),
-            onPressed: showMyDialog,
+            onPressed: showMyAboutDialog,
           ),
           const SizedBox(width: 8),
         ],
@@ -191,9 +252,28 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ElevatedButton(
-              onPressed: showMyDialog,
-              child: const Text('Open Dialog'),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: showMyDialog,
+                    child: const Text('AlertDialog'),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: showMySimpleDialog,
+                    child: const Text('SimpleDialog'),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'Giới tính: $selectedGender',
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: 20),
 
