@@ -1,16 +1,12 @@
 # Material Design Basic
 
-A new Flutter project.
+Bài Topic môn Lập trình di động.
+Nhóm: Đồng Đoàn.
 
-## Getting Started
+## How to use
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone this repository to your computer device.
+2. Open in an IDE like Visual Studio Code.
+3. Go to main.dart (in lib/main.dart)
+4. Open terminal in IDE and type 'flutter run'
+5. Choose platform to deploy the app (Chrome, Edge, Window, Phone, Tablet,...)
