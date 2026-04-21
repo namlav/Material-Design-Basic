@@ -1,7 +1,7 @@
 # Material Design Basic
 
-Bài Topic môn Lập trình di động.
-Nhóm: Đồng Đoàn.
+Topic-based exercises for the Mobile Programming course.
+Group: Đồng Đoàn.
 
 ## How to use
 
@@ -10,3 +10,27 @@ Nhóm: Đồng Đoàn.
 3. Go to main.dart (in lib/main.dart)
 4. Open terminal in IDE and type 'flutter run'
 5. Choose platform to deploy the app (Chrome, Edge, Window, Phone, Tablet,...)
+
+## 🤝 Contribution
+
+Contributions are welcome! Please:
+
+1. Fork repository
+2. Create feature branch
+3. Commit changes
+4. Push và create Pull Request
+
+<!-- ## 📝 License
+
+MIT License
+-->
+## 👨‍💻 Author
+
+Nam Lav
+
+## 📞 Contact
+
+If have any questions or problems, please create issues on Github.
+---
+
+**Happy Coding! 🚀**
