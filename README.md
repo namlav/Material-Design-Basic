@@ -30,7 +30,7 @@ Nam Lav
 
 ## 📞 Contact
 
-If have any questions or problems, please create issues on Github.
+If there are any questions or problems, please create issues on Github.
 ---
 
 **Happy Coding! 🚀**
